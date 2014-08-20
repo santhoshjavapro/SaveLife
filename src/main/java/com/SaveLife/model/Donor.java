@@ -1,4 +1,4 @@
-package com.FirstApp.model;
+package com.SaveLife.model;
 
 public class Donor {
 	String donor_id;

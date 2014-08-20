@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Welcome to FirstApp</title>
+<title>Welcome to SaveLife</title>
 </head>
 <body>
-HI welcome to FirstApp
+<div>
+<input type="submit" value="Fetch"/>
+</div>
 </body>
 </html>

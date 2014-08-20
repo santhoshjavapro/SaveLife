@@ -1,19 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.trident.firstApp</groupId>
-  <artifactId>FirstApp</artifactId>
+  <groupId>org.trident.savelife</groupId>
+  <artifactId>SaveLife</artifactId>
   <version>1.0</version>
   <packaging>war</packaging>
-  <name>FirstApp</name>
+  <name>SaveLife</name>
   
-  
-  <properties>
+  	<properties>
 		<spring.version>4.0.6.RELEASE</spring.version>
 		<jackson.version>1.9.10</jackson.version>
 	</properties>
  
 	<dependencies>
-	
+		<!-- Jackson dependencies -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
