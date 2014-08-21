@@ -12,11 +12,17 @@
 	</properties>
  
 	<dependencies>
-		<!-- Jackson dependencies -->
+		<!-- Json dependencies -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>${jackson.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1</version>
 		</dependency>
  
 		<!-- Spring 3 dependencies -->
@@ -37,6 +43,14 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		
+		<!-- jstl -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
  
-	</dependencies>
+	</dependencies>	
+	
 </project>
