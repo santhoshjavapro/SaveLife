@@ -1,6 +1,12 @@
 package com.SaveLife.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+
+@Document(collection = "Donor")
 public class Donor {
+	@Id
 	String donor_id;
 	String Name;
 	String btype;
