@@ -1,11 +1,17 @@
 package com.SaveLife.model;
 
+import java.io.Serializable;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
 @Document(collection = "Donor")
-public class Donor {
+public class Donor implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	String donor_id;
 	String Name;

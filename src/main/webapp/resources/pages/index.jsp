@@ -14,7 +14,7 @@
 	</div>
 	<script
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="<c:url value="/js/common.js" />"></script>
+	<script src="<c:url value="/resources/js/common.js" />"></script>
 </body>
 </html>
 <script>

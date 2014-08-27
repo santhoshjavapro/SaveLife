@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.SaveLife.Utility.Persistent;
 import com.SaveLife.config.SpringMongoConfig;
+import com.SaveLife.model.Credential;
 import com.SaveLife.model.Donor;
 
 
@@ -52,12 +54,17 @@ public class SaveLifeController {
 			e.printStackTrace();
 		}*/
 		
-//		ApplicationContext ctx = new GenericXmlApplicationContext("savelife-servlet.xml");
-//		MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
-		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
-		MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
-		Donor donor = new Donor("1", "Santhosh1", "O positive", "9962678306");
-		mongoOperation.save(donor);
+		MongoOperations mongoOps = Persistent.getMongoOps();
+		Donor donor = new Donor("2", "reddy", "O positive", "xxxxxxxxxx");
+		Credential cred1 = new Credential("santhosh", "santhosh");
+		Credential cred2 = new Credential("rohan", "rohan");
+		Credential cred3 = new Credential("syam", "syam");
+		Credential cred4 = new Credential("reddy", "reddy");
+		mongoOps.save(donor);
+		mongoOps.save(cred1);
+		mongoOps.save(cred2);
+		mongoOps.save(cred3);
+		mongoOps.save(cred4);
 		return donor;
 	}
 }

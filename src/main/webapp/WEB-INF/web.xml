@@ -7,7 +7,7 @@
        <display-name>SaveLife</display-name>  
 	
 	<welcome-file-list>
-		<welcome-file>/pages/index.jsp</welcome-file>
+		<welcome-file>/resources/pages/login.jsp</welcome-file>
 	</welcome-file-list>
 	   
        <context-param>  

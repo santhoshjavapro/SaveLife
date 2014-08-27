@@ -2,11 +2,11 @@
 alert("updated!!")
 function service(serviceData, callback) {
 	$.ajax({
-		type: serviceData.type,
 		url: serviceData.url,
-		data: "/SaveLife/" + serviceData.data,
-		contentType: "application/json; charset=utf-8",
+		type: serviceData.type,
 		dataType: "json",
+		data: JSON.stringify(serviceData.data),
+	 	contentType: 'application/json',
 		success: function (response) {
 			callback(response);
 		},
