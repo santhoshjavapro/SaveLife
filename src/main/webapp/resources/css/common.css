@@ -29,16 +29,18 @@ and (min-width : 1224px) {
 
 /*Login page style starts*/
 .signuplink{
-	padding-top:10%;
+	padding-top:5%;
 }
-
+.loginError {
+	color:red;	
+}
 /*Login page style ends*/
 /*Signup page style starts*/
 .signupDiv {
 	padding-top:1%;
 	width: 75%;
 }
-.signupContainer {
+.loginContainer {
 	width:100%"
 }
 .signupButton {
@@ -46,6 +48,9 @@ and (min-width : 1224px) {
 }
 .splitButton {
 	width:43%;
+}
+.successSignup{
+	padding-top:25%;
 }
 /* .signupInput {
 	height: 25px;

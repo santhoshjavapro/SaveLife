@@ -20,7 +20,7 @@
 	$('#fetch').click(function() {
 		serviceData = {};
 		serviceData.type = "GET";
-		serviceData.url = "Controller";
+		serviceData.url = "/SaveLife/SaveLife";
 		serviceData.data = "";
 		service(serviceData, function(response) {
 			console.info("Response is Fetch is ", response);
@@ -30,7 +30,7 @@
 	$('#test').click(function() {
 		serviceData = {};
 		serviceData.type = "GET";
-		serviceData.url = "testMap";
+		serviceData.url = "/SaveLife/SaveLife";
 		serviceData.data = "";
 		service(serviceData, function(response) {
 			console.info("Response from Test is ", response);

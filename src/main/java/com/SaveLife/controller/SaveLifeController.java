@@ -1,14 +1,11 @@
 package com.SaveLife.controller;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.SaveLife.Utility.Persistent;
-import com.SaveLife.config.SpringMongoConfig;
 import com.SaveLife.model.Credential;
 import com.SaveLife.model.Donor;
 
@@ -55,16 +52,17 @@ public class SaveLifeController {
 		}*/
 		
 		MongoOperations mongoOps = Persistent.getMongoOps();
-		Donor donor = new Donor("2", "reddy", "O positive", "xxxxxxxxxx");
-		Credential cred1 = new Credential("santhosh", "santhosh");
-		Credential cred2 = new Credential("rohan", "rohan");
-		Credential cred3 = new Credential("syam", "syam");
-		Credential cred4 = new Credential("reddy", "reddy");
-		mongoOps.save(donor);
+//		Donor donor = new Donor("2", "reddy", "O positive", "xxxxxxxxxx");
+		Credential cred1 = new Credential("1", "santhosh", "santhosh");
+		Credential cred2 = new Credential("2","rohan", "rohan");
+		Credential cred3 = new Credential("3","syam", "syam");
+		Credential cred4 = new Credential("4","reddy", "reddy");
+//		mongoOps.save(donor);
 		mongoOps.save(cred1);
 		mongoOps.save(cred2);
 		mongoOps.save(cred3);
 		mongoOps.save(cred4);
-		return donor;
+//		mongoOps.remove(Credential.class);
+		return new Donor();
 	}
 }

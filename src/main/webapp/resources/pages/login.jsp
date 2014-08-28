@@ -12,12 +12,16 @@
 		<H1>Welcome to SaveLife</H1>
 		<h3>Sign In/Sign Up for Access</h3>
 	</div>
-	<div class="signupContainer" align=center>
+	<div class=loginContainer align=center>
 		<div class="signupDiv"><input type="text"	name="username" id="username" placeholder="Username" /></div>
 		<div class="signupDiv"><input type="password" name="password" id="password" placeholder="Password" /></div>
 		<div class="signupDiv"><input type="submit" value="Login" id="login" /> </div>
+		<div class="loginError">
+			<h3>Login Failed</h3>
+		</div>
 		<div class="signuplink"><a href="<c:url value="/resources/pages/signup.jsp" />">Sign Up</a></div>
 	</div>
+	
 	<script	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="<c:url value="/resources/js/common.js" />"></script>
 	<link href="<c:url value="/resources/css/common.css" />" rel="stylesheet" />
@@ -28,16 +32,24 @@
 </body>
 </html>
 <script>
+	$(".loginError").hide();
 	$('#login').click(function() {
+		$(".loginError").hide();
 		serviceData = {};
 		data = {};
 		serviceData.type = "POST";
-		serviceData.url = "Login";
+		serviceData.url = "/SaveLife/User/login";
 		data.username = $("#username").val();
 		data.password = $("#password").val();
+		data.donor_id = "";
 		serviceData.data = data;
 		service(serviceData,function(response) {
-			window.location = "http://localhost:8080/SaveLife/resources/pages/index.jsp";
-		});
+			if (response.message === "Login Succesful") {
+				response.code
+				window.location = "/SaveLife/resources/pages/home.jsp?"+$.param({ code: response.code});
+			} else {
+				$(".loginError").show();
+			}
+		}); 
 	});
 </script>

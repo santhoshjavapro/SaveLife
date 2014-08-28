@@ -12,6 +12,7 @@ public class Credential {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
+	String donor_id;
 	String username;
 	String password;
 	
@@ -19,6 +20,13 @@ public class Credential {
 	
 	public Credential(String username, String password) {
 		super();
+		this.username = username;
+		this.password = password;
+	}
+	
+	public Credential(String donor_id, String username, String password) {
+		super();
+		this.donor_id = donor_id;
 		this.username = username;
 		this.password = password;
 	}
@@ -34,6 +42,14 @@ public class Credential {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getDonor_id() {
+		return donor_id;
+	}
+
+	public void setDonor_id(String donor_id) {
+		this.donor_id = donor_id;
 	}
 	
 }
