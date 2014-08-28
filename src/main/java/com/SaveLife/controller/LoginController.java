@@ -15,7 +15,8 @@ import com.SaveLife.model.ResponseBody;
 
 @RestController
 @RequestMapping("/Login")
-public class Login {
+public class LoginController {
+	
 	@RequestMapping(method=RequestMethod.POST, headers="Accept=application/json")
 	public ResponseBody login(@RequestBody Credential credential) {
 		ResponseBody rs = new ResponseBody();

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/testMap")
+@RequestMapping("/test")
 public class TestController {
 	@RequestMapping(method=RequestMethod.GET, headers="Accept=application/json")
 	public JSONObject getHello() {

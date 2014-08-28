@@ -14,7 +14,7 @@ import com.SaveLife.model.Donor;
 
 
 @RestController
-@RequestMapping("/Controller")
+@RequestMapping("/SaveLife")
 public class SaveLifeController {
 	@RequestMapping( method= RequestMethod.GET, headers="Accept=application/json")
 	public Donor getFirstApp() {

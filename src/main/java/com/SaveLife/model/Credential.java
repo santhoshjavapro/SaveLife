@@ -1,12 +1,12 @@
 package com.SaveLife.model;
 
-import java.io.Serializable;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+@EnableWebMvc
 @Document(collection = "Credential")
-public class Credential implements Serializable {
+public class Credential {
 	/**
 	 * 
 	 */

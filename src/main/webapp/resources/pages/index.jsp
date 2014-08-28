@@ -12,8 +12,7 @@
 		<input type="submit" id="fetch" value="Fetch" /> <input type="submit"
 			id="test" value="Test" />
 	</div>
-	<script
-		src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="<c:url value="/resources/js/common.js" />"></script>
 </body>
 </html>

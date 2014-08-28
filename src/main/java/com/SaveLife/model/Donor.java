@@ -1,13 +1,12 @@
 package com.SaveLife.model;
 
-import java.io.Serializable;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-
+@EnableWebMvc
 @Document(collection = "Donor")
-public class Donor implements Serializable {
+public class Donor {
 	/**
 	 * 
 	 */
@@ -15,7 +14,7 @@ public class Donor implements Serializable {
 	@Id
 	String donor_id;
 	String Name;
-	String btype;
+	String bgroup;
 	String gender;
 	String dob;
 	
@@ -34,11 +33,11 @@ public class Donor implements Serializable {
 	String health_issues;
 	String health_issues_desc;
 	
-	public Donor(String donor_id, String name, String btype, String contact_no) {
+	public Donor(String donor_id, String name, String bgroup, String contact_no) {
 		super();
 		this.donor_id = donor_id;
 		Name = name;
-		this.btype = btype;
+		this.bgroup = bgroup;
 		this.contact_no = contact_no;
 	}
 	
@@ -54,11 +53,11 @@ public class Donor implements Serializable {
 	public void setName(String name) {
 		Name = name;
 	}
-	public String getBtype() {
-		return btype;
+	public String getBgroup() {
+		return bgroup;
 	}
-	public void setBtype(String btype) {
-		this.btype = btype;
+	public void setBgroup(String bgroup) {
+		this.bgroup = bgroup;
 	}
 	public String getGender() {
 		return gender;

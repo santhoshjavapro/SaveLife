@@ -1,5 +1,5 @@
 //Ajax service call
-alert("updated!!")
+//alert("common loading!!")
 function service(serviceData, callback) {
 	$.ajax({
 		url: serviceData.url,

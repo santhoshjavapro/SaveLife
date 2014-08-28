@@ -1,0 +1,54 @@
+body {
+background-color: #99CCFF;
+}
+
+/* mobile ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+	input,select,textarea,a{
+		text-align: center;
+	  	font-size:100%;
+	   	height: 20%;
+		width: 65%;
+		font-family: ‘Times New Roman’, Times, serif;
+	}
+}
+
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 1224px) {
+	input,select,textarea,a{
+		text-align: center;
+	  	font-size:200%;
+	   	height: 20%;
+		width: 65%;
+		font-family: ‘Times New Roman’, Times, serif;
+	}
+}
+
+/*Login page style starts*/
+.signuplink{
+	padding-top:10%;
+}
+
+/*Login page style ends*/
+/*Signup page style starts*/
+.signupDiv {
+	padding-top:1%;
+	width: 75%;
+}
+.signupContainer {
+	width:100%"
+}
+.signupButton {
+	padding-top:1%;
+}
+.splitButton {
+	width:43%;
+}
+/* .signupInput {
+	height: 25px;
+	width: 50%;
+} */
+/*Signup page style starts*/
