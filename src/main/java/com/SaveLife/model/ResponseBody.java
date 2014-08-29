@@ -1,26 +1,27 @@
 package com.SaveLife.model;
 
-import org.json.simple.JSONObject;
+import java.util.List;
 
-public class ResponseBody {
-	JSONObject object;
+public class ResponseBody<T> {
+	
+	List<T> object;
 	String message;
 	String code;
 	
 	public ResponseBody() {}
-	
-	public ResponseBody(JSONObject object, String message, String code) {
+
+	public ResponseBody(List<T> object, String message, String code) {
 		super();
 		this.object = object;
 		this.message = message;
 		this.code = code;
 	}
 
-	public JSONObject getObject() {
+	public List<T> getObject() {
 		return object;
 	}
 
-	public void setObject(JSONObject object) {
+	public void setObject(List<T> object) {
 		this.object = object;
 	}
 
@@ -39,4 +40,6 @@ public class ResponseBody {
 	public void setCode(String code) {
 		this.code = code;
 	}
+	
+	
 }

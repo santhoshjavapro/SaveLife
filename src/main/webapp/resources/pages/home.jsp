@@ -41,13 +41,11 @@
 </body>
 </html>
 <script>
-	$(".loginError").hide();
-	$('#login').click(
+	$('#submit').click(
 			function() {
-				$(".loginError").hide();
 				serviceData = {};
 				data = {};
-				serviceData.type = "POST";
+				serviceData.type = "GET";
 				serviceData.url = "/SaveLife/User/login";
 				data.username = $("#username").val();
 				data.password = $("#password").val();
@@ -60,9 +58,7 @@
 								+ $.param({
 									code : response.code
 								});
-					} else {
-						$(".loginError").show();
-					}
+					} 
 				});
 			});
 </script>
