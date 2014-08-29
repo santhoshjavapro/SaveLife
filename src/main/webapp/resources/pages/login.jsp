@@ -8,11 +8,12 @@
 <title>Welcome to SaveLife</title>
 </head>
 <body>
-	<div align="center">
-		<H1>Welcome to SaveLife</H1>
-		<h3>Sign In/Sign Up for Access</h3>
-	</div>
+	
 	<div class=loginContainer align=center>
+		<div align="center">
+			<H1>Welcome to SaveLife</H1>
+			<h3>Sign In/Sign Up for Access</h3>
+		</div>
 		<div class="signupDiv"><input type="text"	name="username" id="username" placeholder="Username" /></div>
 		<div class="signupDiv"><input type="password" name="password" id="password" placeholder="Password" /></div>
 		<div class="signupDiv"><input type="submit" value="Login" id="login" /> </div>

@@ -12,7 +12,7 @@ public class SpringMongoConfig extends AbstractMongoConfiguration {
  
 	@Override
 	public String getDatabaseName() {
-		return "layer";
+		return "SaveLife";
 	}
  
 	@Override
