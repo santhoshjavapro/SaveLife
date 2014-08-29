@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,6 +20,7 @@ import com.SaveLife.model.ResponseBody;
 @RestController
 @RequestMapping("/home")
 public class HomeController {
+	@RequestMapping(value="/getblood", method=RequestMethod.GET, headers = "Accept=application/json")
 	public ResponseBody<Donor> search(@RequestParam(value="bgroup") String bgroup) {
 		ResponseBody<Donor> rs = new ResponseBody<Donor>();
 		rs.setMessage("Search Failed");

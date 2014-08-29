@@ -43,22 +43,15 @@
 <script>
 	$('#submit').click(
 			function() {
+				var bgroup = $("#bgroup").val();
 				serviceData = {};
 				data = {};
 				serviceData.type = "GET";
-				serviceData.url = "/SaveLife/User/login";
-				data.username = $("#username").val();
-				data.password = $("#password").val();
-				data.donor_id = "";
+				serviceData.url = "/SaveLife/home/getblood?"+$.param({ bgroup: bgroup});
 				serviceData.data = data;
 				service(serviceData, function(response) {
-					if (response.message === "Login Succesful") {
-						response.code
-						window.location = "/SaveLife/resources/pages/home.jsp?"
-								+ $.param({
-									code : response.code
-								});
-					} 
+					console.info("response ", response);
+					 
 				});
 			});
 </script>
