@@ -93,6 +93,7 @@ and (min-width : 1224px) {
 	width:80%;
 	padding-left: 18%;
 	margin: 0px auto;
+	text-align: center;
 }
 .searchContainer{
 	width:80%;
@@ -102,6 +103,10 @@ and (min-width : 1224px) {
 
 .searchContainer select, .searchContainer input {
 	width:48% ;
+}
+.resultBox {
+	margin-top: 5%;
+	width: 80%;
 }
 
 /*Home page style ends*/

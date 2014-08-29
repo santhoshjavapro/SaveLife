@@ -30,8 +30,7 @@
 				</select>
 				<input type="submit" id="submit" value="Search"/>
 		</div>
-		<div>
-			
+		<div class="resultBox">
 		</div>
 	</div>
 	
@@ -41,8 +40,9 @@
 </body>
 </html>
 <script>
-	$('#submit').click(
-			function() {
+	
+	$('#submit').click(function() {
+				$(".order_list").html('');
 				var bgroup = $("#bgroup").val();
 				serviceData = {};
 				data = {};
@@ -50,8 +50,20 @@
 				serviceData.url = "/SaveLife/home/getblood?"+$.param({ bgroup: bgroup});
 				serviceData.data = data;
 				service(serviceData, function(response) {
+					$(".order_list").html();
 					console.info("response ", response);
-					 
+					object = response.object;
+					if (object.length === 0) {
+						$(".resultBox").html("<H3>Your Search Does not return any values<H3>");
+					} else {
+						for (i in object) {
+							var name = object[i].name;
+							
+							var temp_a = "<a href='' class='resultlist'>"+name+"</a><br><br>";
+							$(".resultBox").append(temp_a);
+						}
+					}
+					
 				});
 			});
 </script>
