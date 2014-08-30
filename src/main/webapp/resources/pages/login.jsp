@@ -18,7 +18,7 @@
 		<div class="signupDiv"><input type="password" name="password" id="password" placeholder="Password" /></div>
 		<div class="signupDiv"><input type="submit" value="Login" id="login" /> </div>
 		<div class="loginError">
-			<h3>Login Failed</h3>
+			
 		</div>
 		<div class="signuplink"><a href="<c:url value="/resources/pages/signup.jsp" />">Sign Up</a></div>
 	</div>
@@ -34,23 +34,49 @@
 </html>
 <script>
 	$(".loginError").hide();
+	resetFields();
 	$('#login').click(function() {
+		$("#username").removeClass('danger');
+		$("#password").removeClass('danger');
 		$(".loginError").hide();
+		$(".loginError").html('');
 		serviceData = {};
 		data = {};
 		serviceData.type = "POST";
 		serviceData.url = "/SaveLife/User/login";
 		data.username = $("#username").val();
 		data.password = $("#password").val();
-		data.donor_id = "";
-		serviceData.data = data;
-		service(serviceData,function(response) {
-			if (response.message === "Login Succesful") {
-				response.code
-				window.location = "/SaveLife/resources/pages/home.jsp?"+$.param({ code: response.code});
-			} else {
-				$(".loginError").show();
-			}
-		}); 
+		if (validateCredentials(data.username, data.password)) {
+			data.donor_id = "";
+			serviceData.data = data;
+			service(serviceData,function(response) {
+				if (response.message === "Login Succesful") {
+					response.code
+					window.location = "/SaveLife/resources/pages/home.jsp?"+$.param({ code: response.code});
+				} else {
+					$(".loginError").html("<h3>Login Failed, Please Enter a valid credentials or Signup</h3>");
+					$("#username").addClass('danger');
+					$("#password").addClass('danger');
+					$(".loginError").show();
+				}
+			}); 
+		} else {
+			$(".loginError").show();
+		} 
 	});
+	
+	function validateCredentials(username, password) {
+		var state = true;
+		if (!IsValidEmail(data.username)) {
+			$(".loginError").append("<h3>Invalid Username</h3>");
+			$("#username").addClass('danger');
+			state = false;
+		} 
+		if (!IsNotBlank(password)) {
+			$(".loginError").append("<h3>Password should not be Empty!</h3>");
+			$("#password").addClass('danger');
+			state = false;
+		}
+		return state;
+	}
 </script>

@@ -1,5 +1,7 @@
 package com.SaveLife.model;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -18,10 +20,14 @@ public class Donor {
 	String gender;
 	String dob;
 	
-	String address;
-	String email_id;
-	String contact_no;
-	String alternate_contact_no;
+	String city;
+	String state;
+	String country;
+	String pincode;
+	
+	List<String> email_id;
+	List<String> contact_no;
+	List<String> alternate_contact_no;
 	String availability;
 	
 	String username;
@@ -35,7 +41,7 @@ public class Donor {
 	
 	public Donor() {}
 	
-	public Donor(String donor_id, String name, String bgroup, String contact_no) {
+	public Donor(String donor_id, String name, String bgroup, List<String> contact_no) {
 		super();
 		this.donor_id = donor_id;
 		this.name = name;
@@ -83,35 +89,59 @@ public class Donor {
 		this.dob = dob;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getCity() {
+		return city;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
-	public String getEmail_id() {
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
+	}
+
+	public List<String> getEmail_id() {
 		return email_id;
 	}
 
-	public void setEmail_id(String email_id) {
+	public void setEmail_id(List<String> email_id) {
 		this.email_id = email_id;
 	}
 
-	public String getContact_no() {
+	public List<String> getContact_no() {
 		return contact_no;
 	}
 
-	public void setContact_no(String contact_no) {
+	public void setContact_no(List<String> contact_no) {
 		this.contact_no = contact_no;
 	}
 
-	public String getAlternate_contact_no() {
+	public List<String> getAlternate_contact_no() {
 		return alternate_contact_no;
 	}
 
-	public void setAlternate_contact_no(String alternate_contact_no) {
+	public void setAlternate_contact_no(List<String> alternate_contact_no) {
 		this.alternate_contact_no = alternate_contact_no;
 	}
 
@@ -182,6 +212,4 @@ public class Donor {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
 }
