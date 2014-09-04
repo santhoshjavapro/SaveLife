@@ -1,9 +1,7 @@
 package com.SaveLife.controller;
 
-import java.util.Iterator;
 import java.util.List;
 
-import org.json.simple.JSONObject;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -28,23 +26,8 @@ public class HomeController {
 			MongoOperations mongoOps = Persistent.getMongoOps();
 			Query searchUserQuery = new Query(Criteria.where("bgroup").is(bgroup));
 			if (searchUserQuery != null) {
-				List<Donor> donors = mongoOps.findAll(Donor.class);
-				/*if (donors != null) {
-					for (Donor donor:donors) {
-						if (donor != null && !StringUtils.isEmpty(donor.getBgroup())) {
-							if (!bgroup.equalsIgnoreCase(donor.getBgroup())) {
-								
-							}
-						}
-					}
-				}*/
+				List<Donor> donors = mongoOps.find(searchUserQuery, Donor.class);
 				if (donors != null) {
-					for (Iterator<Donor> it = donors.iterator(); it.hasNext(); ) {
-						Donor donor = it.next();
-						if (!bgroup.equalsIgnoreCase(donor.getBgroup())) {
-							it.remove();
-						} 
-					}
 					rs.setObject(donors);
 					rs.setMessage("Search Success");
 				}

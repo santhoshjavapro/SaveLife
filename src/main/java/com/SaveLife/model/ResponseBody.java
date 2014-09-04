@@ -7,14 +7,16 @@ public class ResponseBody<T> {
 	List<T> object;
 	String message;
 	String code;
+	boolean state;
 	
 	public ResponseBody() {}
 
-	public ResponseBody(List<T> object, String message, String code) {
+	public ResponseBody(List<T> object, String message, String code, boolean state) {
 		super();
 		this.object = object;
 		this.message = message;
 		this.code = code;
+		this.state = state;
 	}
 
 	public List<T> getObject() {
@@ -39,6 +41,14 @@ public class ResponseBody<T> {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public boolean isState() {
+		return state;
+	}
+
+	public void setState(boolean state) {
+		this.state = state;
 	}
 	
 	

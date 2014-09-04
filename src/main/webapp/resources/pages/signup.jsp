@@ -64,7 +64,7 @@
 				</select>
 			</div>
 			<div class="signupDiv"><input class="signupInput" type="text" name="email_id" id="email_id" placeholder="Email Id*(comma seperated if multiple)"/></div>
-			<div class="signupDiv"><input class="signupInput" type="text" name="password" id="password" placeholder="Password*"/></div>
+			<div class="signupDiv"><input class="signupInput" type="password" name="password" id="password" placeholder="Password*"/></div>
 			
 			<!-- <div class="signupDiv"><input class="signupInput" type="text" name="height" id="height" placeholder="Height(In cms)"/></div>
 			<div class="signupDiv"><input class="signupInput" type="text" name="weight" id="weight" placeholder="Weight(In cms)"/></div>
@@ -114,8 +114,7 @@
 				 		window.location = "/SaveLife/resources/pages/login.jsp";
 			 		}, 3000);
 			});
-		}
-		  
+		} 
 	});
 	
 	$("#reset").click(function(){
@@ -132,6 +131,22 @@
 	$("#contact_no, #alternate_contact_no").bind("keyup", function(e) {
 	    this.value = this.value.replace(/[^-,0-9]/g, '');
 	});
+	
+	$("#email_id").focusout(function() {
+		console.info("out of focus");
+		validateUser();
+	});
+	
+	function validateUser() {
+		var email = $("#email_id").val();
+		if (IsNotBlank(email)) {
+			var array = email.split(',');
+			console.info(array[0]);
+			if (IsValidEmail(array[0])) {
+				
+			}
+		}
+	}
 	
 	function getData(wrapper) {
 		var data = {}

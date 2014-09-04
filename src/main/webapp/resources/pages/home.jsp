@@ -42,7 +42,7 @@
 <script>
 	
 	$('#submit').click(function() {
-				$(".order_list").html('');
+				$(".resultBox").html("");
 				var bgroup = $("#bgroup").val();
 				serviceData = {};
 				data = {};
@@ -50,7 +50,6 @@
 				serviceData.url = "/SaveLife/home/getblood?"+$.param({ bgroup: bgroup});
 				serviceData.data = data;
 				service(serviceData, function(response) {
-					$(".order_list").html();
 					console.info("response ", response);
 					object = response.object;
 					if (object.length === 0) {
@@ -59,11 +58,24 @@
 						for (i in object) {
 							var name = object[i].name;
 							
-							var temp_a = "<a href='' class='resultlist'>"+name+"</a><br><br>";
+							var temp_a = "<div><a class='resultlist' name='"+name+"'href='#'>"+name+"</a><div class='resultDetails'></div></div>";
 							$(".resultBox").append(temp_a);
+							$("a[name='"+name+"']").data(object[i]);
 						}
 					}
 					
 				});
 			});
+	
+	$('.resultBox').on('click', '.resultlist', function() {
+		
+// 		var getDiv = $(this).next());
+		console.info("clicked", $(this).data());
+		var data = $(this).data();
+		var div = document.createElement("div");
+		div.setAttribute("name",data.name);
+		div.setAttribute("bgoup",data.bgroup);
+		div.innerHTML="hi "+i;
+		getDiv.append(data.bgroup)
+	});
 </script>
