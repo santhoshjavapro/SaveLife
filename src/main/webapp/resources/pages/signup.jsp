@@ -9,9 +9,14 @@
 </head>
 <body>
 	<div id="signupPage">
-		<div align="center">
-			<H1>Welcome to SignUp Page</H1>
-			<h3>Please Fill all your Details to signup</h3>
+		<div class="header">
+			<div class="logout">
+<!-- 				<button class="editButton" onClick="edit();">Edit</button>	 -->
+				<button class="signButton" onClick="sign();">Logout</button>
+			</div>
+			
+			<H1  class="mainSignHeader">Welcome to SignUp Page</H1>
+			<h3 class="subHeader">Please Fill all your Details to signup</h3>
 		</div>
 		
 		<div class="signupContainer" align=center>
@@ -92,10 +97,15 @@
 </body>
 </html>
 <script>
-	resetFields();
-	$('.successSignup').hide();
+	$(document).ready(function() {
+		addLoading();
+		$('.successSignup').hide();
+		checkSessionandLoad();
+	});
+	
 	$("#submit").click(function(){
 		$('.signupContainer').find("input[type=text],textarea, select").removeClass('danger');
+		
 		serviceData = {};
 		wrapper = {};
 		serviceData.type = "POST";
@@ -103,16 +113,33 @@
 		wrapper = getData(wrapper);
 		if (wrapper.state) {
 			serviceData.data = wrapper.data;
-			/* service(serviceData,function(response) {
+			service(serviceData,function(response) {
 //	 			window.location = "resources/pages/index.jsp";
-					$('#signupPage').hide();
-				 	$('.successSignup').show();
-				 	setTimeout(function(){
-				 		window.location = "/SaveLife/resources/pages/login.jsp";
-			 		}, 3000);
-			}); */
+				$('#signupPage').hide();
+			 	$('.successSignup').show();
+			 	setTimeout(function(){
+			 		window.location = "/SaveLife/resources/pages/login.jsp";
+		 		}, 3000);
+			}); 
 		} 
 	});
+	
+	function checkSessionandLoad() {
+		var code = localStorage.getItem('usercode');
+		if (IsNotBlank(code)) {
+			$('.signButton').show();
+			serviceData = {};
+			serviceData.type = "GET";
+			serviceData.url = "/SaveLife/User/edit?code="+code;
+			service(serviceData,function(response) {
+				renderData(response.object[0]);
+			}); 
+		} else {
+			$('.signButton').hide();
+			resetFields();
+			removeLoading();
+		}
+	}
 	
 	$("#reset").click(function(){
 		resetFields();
@@ -122,7 +149,13 @@
 		/* if (confirm("Redirecting to Login Page") == true) {
 			window.location = "login.jsp";
 	    }  */
-		window.location = "login.jsp";
+	    if (IsNotBlank(localStorage.getItem('username'))) {
+	    	window.location = "home.jsp";
+	    } else {
+	    	clearSession();
+	    	window.location = "login.jsp";
+	    }
+		
 	});
 	
 	$("#contact_no, #alternate_contact_no").bind("keyup", function(e) {
@@ -133,12 +166,49 @@
 		validateUser();
 	});
 	
+	function renderData(obj) {
+		$('#name').val(obj.name);
+		$('#dob').val(obj.dob);
+		$('#gender').val(obj.gender);
+		$('#bgroup').val(obj.bgroup);
+		$('#city').val(obj.city);
+		$('#state').val(obj.state);
+		$('#country').val(obj.country);
+		$('#pincode').val(obj.pincode);
+		$('#contact_no').val(obj.contact_no);
+		$('#alternate_contact_no').val(obj.alternate_contact_no);
+		$('#availability').val(obj.availability);
+		$('#email_id').val(obj.email_id);
+		$('#password').val(obj.password);
+		$('#password').val(obj.password);
+		setTimeout(function () {
+			removeLoading();
+		}, 1500)
+		
+	}
+	
 	function validateUser() {
 		var email = $("#email_id").val();
 		if (IsNotBlank(email)) {
 			var array = email.split(',');
 			if (IsValidEmail(array[0])) {
-				//TODO: Implement it
+				serviceData = {};
+				serviceData.type = "GET";
+				serviceData.url = "/SaveLife/User/validateuser?username="+array[0];
+				service(serviceData,function(response) {
+					if (response.message === 'Username Already Exists') {
+						$("#email_id").val('');
+						$("#email_id").addClass('danger');
+						$("#email_id").attr('placeholder', 'Username Already Exists');
+						setTimeout(function(){
+							$("#email_id").attr('placeholder', 'Email Id*(comma seperated if multiple)');
+						},3000);
+					}
+				}); 
+			} else {
+				$("#email_id").val('');
+				$("#email_id").addClass('danger');
+				$("#email_id").attr('placeholder', 'Please Enter an Valid Email Id');
 			}
 		}
 	}

@@ -83,3 +83,24 @@
     function removeLoading() {
     	 $('#overlay').remove();
     }
+    
+	function checkSession() {
+		var user = localStorage.getItem('username');
+		if (!IsNotBlank(user)) {
+			$('.signButton').text('Log In');
+			$('.editButton').hide();
+		}
+	}
+	
+	function setSession (username, password, code) {
+		localStorage.setItem('username',username);
+		localStorage.setItem('password',password);
+		localStorage.setItem('usercode',code);
+	}
+	
+	function clearSession () {
+		localStorage.setItem('username','');
+		localStorage.setItem('password','');
+		localStorage.setItem('usercode','');
+	}
+

@@ -33,6 +33,10 @@
 </body>
 </html>
 <script>
+
+	$(document).ready(function() {
+		removeLoading();	
+	});
 	$(".loginError").hide();
 	resetFields();
 	$('#login').click(function() {
@@ -53,8 +57,7 @@
 				if (response.message === "Login Succesful") {
 					var username = response.object[0].username, password = response.object[0].password;
 					if (IsNotBlank(username) && IsNotBlank(password)) {
-						localStorage.setItem('username',response.object[0].username);
-						localStorage.setItem('password',response.object[0].password);
+						setSession(username, password, response.code);
 						window.location = "/SaveLife/resources/pages/home.jsp?"+$.param({ code: response.code});
 					} else {
 						$(".loginError").html("<h3>Login Failed, Failed to Fetch Credentials</h3>");

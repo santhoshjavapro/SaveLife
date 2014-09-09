@@ -1,12 +1,15 @@
 package com.SaveLife.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,8 +26,8 @@ import com.SaveLife.model.ResponseBody;
 public class UserController {
 
 	@RequestMapping(value="/login", method=RequestMethod.POST, headers="Accept=application/json")
-	public ResponseBody login(@RequestBody Credential credential) {
-		ResponseBody rs = new ResponseBody();
+	public ResponseBody<Credential> login(@RequestBody Credential credential) {
+		ResponseBody<Credential> rs = new ResponseBody<Credential>();
 		rs.setMessage("Login Failed");
 
 		String username = credential.getUsername();
@@ -44,10 +47,7 @@ public class UserController {
 					if (!StringUtils.isEmpty(dbname) && username.equals(dbname) && !StringUtils.isEmpty(dbpass) && password.equals(dbpass)) {
 						rs.setCode(localCredential.getDonor_id());
 						
-						ArrayList<Credential> credentialList = new ArrayList<Credential>();
-						credentialList.add(credential);
-						
-						rs.setObject(credentialList);
+						rs.setObject(Arrays.asList(credential));
 						rs.setMessage("Login Succesful");
 					}
 				}
@@ -57,8 +57,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/signup", method=RequestMethod.POST, headers="Accept=application/json")
-	public ResponseBody signup(@RequestBody Donor donor) {
-		ResponseBody rs = new ResponseBody();
+	public ResponseBody<Donor> signup(@RequestBody Donor donor) {
+		ResponseBody<Donor> rs = new ResponseBody<Donor>();
 		rs.setMessage("SignUp Failed");
 		try {
 			
@@ -82,15 +82,26 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/validateuser", method=RequestMethod.GET)
-	public ResponseBody validateusername(@RequestParam("username") String username) {
-		ResponseBody rs = new ResponseBody();
+	public ResponseBody<Donor> validateusername(@RequestParam("username") String username) {
+		ResponseBody<Donor> rs = new ResponseBody<Donor>();
 		rs.setMessage("Username does not exists");
-		Query searchUser = new Query(Criteria.where("username").is(username));
-		MongoOperations mongoOps = Utility.getMongoOps();
-		List<Credential> usernames = mongoOps.find(searchUser, Credential.class);
-		if (usernames != null) {
-			rs.setMessage("Username already exists");
-		} 
+		List<Donor> donors = Utility.getDonorsByOneColumn("username", username, false);
+		if (!CollectionUtils.isEmpty(donors)) {
+			rs.setObject(donors);
+			rs.setMessage("Username Already Exists");
+		}
 		return rs;
+	}
+	
+	@RequestMapping(value="/edit", method=RequestMethod.GET)
+	public ResponseBody<Donor> getDonor(@RequestParam("code") String usercode) {
+		ResponseBody<Donor> rs = new ResponseBody<Donor>();
+		rs.setMessage("Fetching Details Failed");
+		List<Donor> donor = Utility.getDonorsByOneColumn("_id", usercode, false);
+		if (donor != null) {
+			rs.setObject(donor);
+			rs.setMessage("Donor Details Fetched");
+		}
+		return  rs;
 	}
 }

@@ -59,11 +59,11 @@ and (max-device-width : 480px) {
 		width: 49%;
 	}
 	
-	.logout {
+	/* .logout {
 		font-size: 100%;
 		float:right;
 		width:5%
-	}
+	} */
 }
 
 /* Desktops and laptops ----------- */
@@ -105,15 +105,6 @@ and (min-width : 1224px) {
 	}
 	.splitButton {
 		width: 32.5%;
-	}
-	.logout {
-		float: right;
-	    font-size: 100%;
-	    left: -2%;
-	    position: relative;
-	    top: 50%;
-	    width: 5%;
-		
 	}
 }
 
@@ -182,5 +173,42 @@ and (min-width : 1224px) {
 
 .resultlist {
 	padding-top : 2%;
+}
+
+.editButton {
+	float:left;
+	margin-left:10%;
+}
+
+.signButton {
+ 	float: right;
+}
+
+.logout {
+		float: right;
+	    font-size: 100%;
+	    left: -2%;
+	    position: relative;
+	    top: 50%;
+	    width: 10%;
+	     z-index: 0;
+		
+}
+	
+.mainHomeHeader {
+	position: relative;
+	left: 5%;
+	z-index: -1;
+}
+
+.mainSignHeader {
+	position: relative;
+	text-align: center;
+	float:center;
+	z-index: -1;
+}
+
+.subHeader {
+	text-align: center;
 }
 /*Home page style ends*/

@@ -10,8 +10,12 @@
 <body>
 
 	<div class="header">
-		<!-- 	<a class="logout" href="">Logout</a>	 -->
-		<H1>Welcome to SaveLife</H1>
+		<div class="logout">
+			<button class="editButton" onClick="edit();">Edit</button>	
+			<button class="signButton" onClick="sign();">Logout</button>
+		</div>
+		
+		<H1 class="mainHomeHeader">Welcome to SaveLife</H1>
 
 	</div>
 
@@ -52,37 +56,45 @@
 	
 	$(document).ready(function() {
 		addLoading();
+		checkSession();
 		setTimeout (function() {
 			loadCities();
-		}, 5000)
-		
+		}, 1500);
 	});
 	
+	function edit() {
+		addLoading();
+		window.location = "/SaveLife/resources/pages/signup.jsp";
+	}
+	
+	function sign() {
+		addLoading();
+		clearSession();
+		window.location = "/SaveLife/";
+	}
+	
 	$('#submit').click(function() {
-				$(".resultBox").html("");
-				$("#bgroup").removeClass('danger');
-				var bgroup = $("#bgroup").val();
-				var city = ($("#cities").val()).toLowerCase();
-				if (city === 'select city') {
-					city = "";
-				}
-				if (bgroup !== 'Select Blood Group') {
-					callSearchService(bgroup, city);
-				} else {
-					$("#bgroup").addClass('danger');
-					$(".resultBox").html("<H3 style='color:red;'>Please Select a Blood Group<H3>");
-				}
-				
-				
-			});
+			$(".resultBox").html("");
+			$("#bgroup").removeClass('danger');
+			var bgroup = $("#bgroup").val();
+			var city = ($("#cities").val()).toLowerCase();
+			if (city === 'select city') {
+				city = "";
+			}
+			if (bgroup !== 'Select Blood Group') {
+				callSearchService(bgroup, city);
+			} else {
+				$("#bgroup").addClass('danger');
+				$(".resultBox").html("<H3 style='color:red;'>Please Select a Blood Group<H3>");
+			}
+		});
+	
 	
 	function loadCities() {
 		$('select[name=cities]').html('')
 		serviceData = {};
-		data = {};
 		serviceData.type = "GET";
 		serviceData.url = "/SaveLife/home/getCities";
-		serviceData.data = data;
 		service(serviceData, function(response) {
 			var cities = response.object;
 			if (cities !== null) {

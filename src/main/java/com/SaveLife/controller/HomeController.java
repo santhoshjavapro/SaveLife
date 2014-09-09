@@ -29,15 +29,14 @@ public class HomeController {
 		List<Donor> donorElements;
 		MongoOperations mongoOps = Utility.getMongoOps();
 		if (!StringUtils.isEmpty(city) && !StringUtils.isEmpty(bgroup)) {
-			List<Donor> donorByTwoColumn = getDonorByTwoColumn("bgroup", bgroup, "city", city);
-			rs.setMessage("Both Not empty scenario needs to be handled");
+			List<Donor> donorByTwoColumn = Utility.getDonorsByTwoColumn("bgroup", bgroup, "city", city, true);
 			rs.setObject(donorByTwoColumn);
 			rs.setMessage("Search Success");
 			if (donorByTwoColumn == null) {
 				rs.setMessage("Search returned 0 Results");
 			}
 		}  else if (!StringUtils.isEmpty(bgroup)) {
-			List<Donor> donorByOneColumn = getDonorByOneColumn("bgroup", bgroup);
+			List<Donor> donorByOneColumn = Utility.getDonorsByOneColumn("bgroup", bgroup, true);
 			rs.setObject(donorByOneColumn);
 			rs.setMessage("Search Success");
 			if (donorByOneColumn == null) {
@@ -51,29 +50,7 @@ public class HomeController {
 		
 		return rs;
 	}
-	
-	public List<Donor> getDonorByTwoColumn(String columnOneName, String searchOneString, String columnTwoName, String searchTwoString) {
-		Criteria criteriaOne = new Criteria().where(columnOneName).is(searchOneString);
-		Criteria criteriaTwo = new Criteria().where(columnTwoName).is(searchTwoString);
-		Criteria criteriaOr = new Criteria().andOperator(criteriaOne, criteriaTwo);
-		Query query = Query.query(criteriaOr);
-		MongoOperations mongoOps = Utility.getMongoOps();
-		List<Donor> donors = mongoOps.find(query, Donor.class);
-		if (donors != null) {
-			return donors;
-		}
-		return null;
-	}
-	
-	public List<Donor> getDonorByOneColumn(String columnName, String searchString) {
-		Query query = new Query(new Criteria().where(columnName).is(searchString));
-		MongoOperations mongoOps = Utility.getMongoOps();
-		List<Donor> donors = mongoOps.find(query, Donor.class);
-		if (donors != null) {
-			return donors;
-		}
-		return null;
-	}
+
 	
 	@RequestMapping(value="/getCities", method=RequestMethod.GET)
 	public ResponseBody<String> getCitiies() {
