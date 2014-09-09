@@ -1,17 +1,18 @@
 package com.SaveLife.model;
 
-import java.util.List;
+import java.util.Collection;
 
 public class ResponseBody<T> {
 	
-	List<T> object;
+	Collection<T> object;
 	String message;
 	String code;
 	boolean state;
 	
 	public ResponseBody() {}
 
-	public ResponseBody(List<T> object, String message, String code, boolean state) {
+	public ResponseBody(Collection<T> object, String message, String code,
+			boolean state) {
 		super();
 		this.object = object;
 		this.message = message;
@@ -19,11 +20,11 @@ public class ResponseBody<T> {
 		this.state = state;
 	}
 
-	public List<T> getObject() {
+	public Collection<T> getObject() {
 		return object;
 	}
 
-	public void setObject(List<T> object) {
+	public void setObject(Collection<T> object) {
 		this.object = object;
 	}
 
@@ -50,6 +51,7 @@ public class ResponseBody<T> {
 	public void setState(boolean state) {
 		this.state = state;
 	}
+
 	
 	
 }

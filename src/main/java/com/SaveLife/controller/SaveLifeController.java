@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.SaveLife.Utility.Persistent;
+import com.SaveLife.Utility.Utility;
 import com.SaveLife.model.Credential;
 import com.SaveLife.model.Donor;
 
@@ -51,7 +51,7 @@ public class SaveLifeController {
 			e.printStackTrace();
 		}*/
 		
-		MongoOperations mongoOps = Persistent.getMongoOps();
+		MongoOperations mongoOps = Utility.getMongoOps();
 //		Donor donor = new Donor("2", "reddy", "O positive", "xxxxxxxxxx");
 		Credential cred1 = new Credential("1", "santhosh", "santhosh");
 		Credential cred2 = new Credential("2","rohan", "rohan");

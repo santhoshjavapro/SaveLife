@@ -1,5 +1,6 @@
 package com.SaveLife.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.SaveLife.Utility.Persistent;
+import com.SaveLife.Utility.Utility;
 import com.SaveLife.model.Credential;
 import com.SaveLife.model.Donor;
 import com.SaveLife.model.ResponseBody;
@@ -30,7 +31,7 @@ public class UserController {
 		String password = credential.getPassword();
 
 		if(!StringUtils.isEmpty(username)) {
-			MongoOperations mongoOps = Persistent.getMongoOps();
+			MongoOperations mongoOps = Utility.getMongoOps();
 			Query searchUserQuery = new Query(Criteria.where("username").is(username));
 			if (searchUserQuery != null) {
 				Credential localCredential = mongoOps.findOne(searchUserQuery, Credential.class);
@@ -42,6 +43,11 @@ public class UserController {
 					String dbpass = localCredential.getPassword();
 					if (!StringUtils.isEmpty(dbname) && username.equals(dbname) && !StringUtils.isEmpty(dbpass) && password.equals(dbpass)) {
 						rs.setCode(localCredential.getDonor_id());
+						
+						ArrayList<Credential> credentialList = new ArrayList<Credential>();
+						credentialList.add(credential);
+						
+						rs.setObject(credentialList);
 						rs.setMessage("Login Succesful");
 					}
 				}
@@ -56,7 +62,7 @@ public class UserController {
 		rs.setMessage("SignUp Failed");
 		try {
 			
-			MongoOperations mongoOps = Persistent.getMongoOps();
+			MongoOperations mongoOps = Utility.getMongoOps();
 			long count = mongoOps.count(null, Donor.class);
 			int size = (int) count;
 			size++;
@@ -80,7 +86,7 @@ public class UserController {
 		ResponseBody rs = new ResponseBody();
 		rs.setMessage("Username does not exists");
 		Query searchUser = new Query(Criteria.where("username").is(username));
-		MongoOperations mongoOps = Persistent.getMongoOps();
+		MongoOperations mongoOps = Utility.getMongoOps();
 		List<Credential> usernames = mongoOps.find(searchUser, Credential.class);
 		if (usernames != null) {
 			rs.setMessage("Username already exists");

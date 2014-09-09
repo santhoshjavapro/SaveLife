@@ -101,19 +101,16 @@
 		serviceData.type = "POST";
 		serviceData.url = "/SaveLife/User/signup";
 		wrapper = getData(wrapper);
-		console.info("wrapper ",wrapper)
 		if (wrapper.state) {
 			serviceData.data = wrapper.data;
-			console.info("data ", serviceData.data)
-			service(serviceData,function(response) {
+			/* service(serviceData,function(response) {
 //	 			window.location = "resources/pages/index.jsp";
-				console.info("response is ", response);
 					$('#signupPage').hide();
 				 	$('.successSignup').show();
 				 	setTimeout(function(){
 				 		window.location = "/SaveLife/resources/pages/login.jsp";
 			 		}, 3000);
-			});
+			}); */
 		} 
 	});
 	
@@ -133,7 +130,6 @@
 	});
 	
 	$("#email_id").focusout(function() {
-		console.info("out of focus");
 		validateUser();
 	});
 	
@@ -141,9 +137,8 @@
 		var email = $("#email_id").val();
 		if (IsNotBlank(email)) {
 			var array = email.split(',');
-			console.info(array[0]);
 			if (IsValidEmail(array[0])) {
-				
+				//TODO: Implement it
 			}
 		}
 	}
@@ -154,27 +149,28 @@
 // 		data = (($('.signupContainer input,select').serialize()))
 // 		data = $('.signupContainer input,select').serialize();
 		data.password = $("#password").val();
-		data.dob =$("#dob").val();
-		data.donor_id = $("#donor_id").val();
-		data.name = $("#name").val();
-		data.bgroup =$("#bgroup").val();
-		data.gender = $("#gender").val();
-		data.city = $("#city").val();
-		data.state =$("#state").val();
-		data.country =$("#country").val();
+		data.dob = $("#dob").val();
+// 		data.donor_id = ($("#donor_id").val()).toLowerCase();
+		data.name = ($("#name").val()).toLowerCase();
+		data.bgroup = ($("#bgroup").val()).toLowerCase();
+		data.gender = ($("#gender").val()).toLowerCase();
+		data.city = ($("#city").val()).toLowerCase();
+		data.state = ($("#state").val()).toLowerCase();
+		data.country = ($("#country").val()).toLowerCase();
 		data.pincode = $("#pincode").val();
-		var email = $("#email_id").val();
+		var email = ($("#email_id").val()).toLowerCase();
 		data.email_id = email.split(',');
 		var cnt = $("#contact_no").val();
 		data.contact_no = cnt.split(',');
 		var alt = $("#alternate_contact_no").val();
 		data.alternate_contact_no = alt.split(',');
-		data.availability =$("#availability").val();
-		data.height =$("#height").val();
-		data.weight =$("#weight").val();
-		data.last_donated_date =$("#last_donated_date").val();
-		data.health_issues =$("#health_issues").val();
-		data.health_issues_desc =$("#health_issues_desc").val();
+		data.availability = ($("#availability").val()).toLowerCase();
+		//deprecated
+		data.height = $("#height").val();
+		data.weight = $("#weight").val();
+		data.last_donated_date = $("#last_donated_date").val();
+		data.health_issues = $("#health_issues").val();
+		data.health_issues_desc = $("#health_issues_desc").val();
 		
 		wrapper.state = getState();
 		
@@ -195,6 +191,7 @@
 	}
 	
 	function getState() {
+		var state = true;
 		if (!IsNotBlank($("#password").val())) {
 			state = false;
 			$("#password").addClass('danger');

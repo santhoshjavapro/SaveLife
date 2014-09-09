@@ -1,7 +1,24 @@
 body {
 background-color: #99CCFF;
 }
-
+#overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: #000;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+}
+#loading {
+    width: 50px;
+    height: 57px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -28px 0 0 -25px;
+}
 /* mobile ----------- */
 @media only screen 
 and (min-device-width : 320px) 
@@ -41,6 +58,12 @@ and (max-device-width : 480px) {
 	.splitButton {
 		width: 49%;
 	}
+	
+	.logout {
+		font-size: 100%;
+		float:right;
+		width:5%
+	}
 }
 
 /* Desktops and laptops ----------- */
@@ -54,6 +77,7 @@ and (min-width : 1224px) {
 		margin-left: 0px auto;
 		text-align: center;
 		font-size:300%;
+		 width: 100%;
 	}
 	input,select,textarea,a {
 		text-align: center;
@@ -81,6 +105,15 @@ and (min-width : 1224px) {
 	}
 	.splitButton {
 		width: 32.5%;
+	}
+	.logout {
+		float: right;
+	    font-size: 100%;
+	    left: -2%;
+	    position: relative;
+	    top: 50%;
+	    width: 5%;
+		
 	}
 }
 
@@ -126,12 +159,28 @@ and (min-width : 1224px) {
 	padding-top: 3%;
 }
 
-.searchContainer select, .searchContainer input {
+/* .searchContainer select, .searchContainer input {
 	width:48% ;
-}
+} */
 .resultBox {
-	margin-top: 5%;
-	width: 80%;
+	margin: 0% auto;
+	margin-top: 2%;
+ 	width: 96.8%;
+	padding-top: 10%;
+	padding-bottom: 10%;
+	/* background-color: white; */
 }
 
+.selects {
+	width: 48%;
+}
+
+.homeSubmit {
+	width: 97%;
+	margin-top: 3%;
+}
+
+.resultlist {
+	padding-top : 2%;
+}
 /*Home page style ends*/

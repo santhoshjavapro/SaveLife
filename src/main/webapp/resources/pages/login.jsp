@@ -51,8 +51,15 @@
 			serviceData.data = data;
 			service(serviceData,function(response) {
 				if (response.message === "Login Succesful") {
-					response.code
-					window.location = "/SaveLife/resources/pages/home.jsp?"+$.param({ code: response.code});
+					var username = response.object[0].username, password = response.object[0].password;
+					if (IsNotBlank(username) && IsNotBlank(password)) {
+						localStorage.setItem('username',response.object[0].username);
+						localStorage.setItem('password',response.object[0].password);
+						window.location = "/SaveLife/resources/pages/home.jsp?"+$.param({ code: response.code});
+					} else {
+						$(".loginError").html("<h3>Login Failed, Failed to Fetch Credentials</h3>");
+						$(".loginError").show();
+					}
 				} else {
 					$(".loginError").html("<h3>Login Failed, Please Enter a valid credentials or Signup</h3>");
 					$("#username").addClass('danger');

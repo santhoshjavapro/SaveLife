@@ -212,4 +212,19 @@ public class Donor {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	@Override
+	public String toString() {
+		return "Donor [donor_id=" + donor_id + ", name=" + name + ", bgroup="
+				+ bgroup + ", gender=" + gender + ", dob=" + dob + ", city="
+				+ city + ", state=" + state + ", country=" + country
+				+ ", pincode=" + pincode + ", email_id=" + email_id
+				+ ", contact_no=" + contact_no + ", alternate_contact_no="
+				+ alternate_contact_no + ", availability=" + availability
+				+ ", username=" + username + ", password=" + password
+				+ ", height=" + height + ", weight=" + weight
+				+ ", last_donated_date=" + last_donated_date
+				+ ", health_issues=" + health_issues + ", health_issues_desc="
+				+ health_issues_desc + "]";
+	}
 }
