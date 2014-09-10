@@ -19,6 +19,17 @@ background-color: #99CCFF;
     left: 50%;
     margin: -28px 0 0 -25px;
 }
+
+th {
+	font-size: 150%;
+}
+td {
+	font-size: 120%;
+}
+
+.resultBox a {
+	font-size: 120%;
+}
 /* mobile ----------- */
 @media only screen 
 and (min-device-width : 320px) 
